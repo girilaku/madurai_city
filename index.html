@@ -42,6 +42,7 @@
   }
   a{color:var(--maroon);}
   .wrap{max-width:980px;margin:0 auto;padding:0 1.5rem;}
+  img{max-width:100%;display:block;}
 
   /* ---------- Gopuram tier motif (signature element) ---------- */
   .tiers{display:flex;flex-direction:column;align-items:center;width:100%;}
@@ -67,7 +68,7 @@
   .hero{
     background:linear-gradient(180deg,var(--maroon) 0%,var(--maroon-dark) 100%);
     color:var(--cream);
-    padding:4.5rem 0 0;
+    padding:3.5rem 0 0;
     position:relative;
   }
   .hero .wrap{text-align:center;}
@@ -76,8 +77,15 @@
     font-family:'Cormorant Garamond',serif;
     font-size:1.4rem;
     color:var(--gold-soft);
-    max-width:640px;margin:0 auto 2.5rem;
+    max-width:640px;margin:0 auto 2rem;
   }
+  .hero-photo{
+    max-width:900px;margin:0 auto;
+    border:6px solid var(--maroon-dark);
+    border-bottom:none;
+    overflow:hidden;
+  }
+  .hero-photo img{width:100%;height:340px;object-fit:cover;object-position:center 65%;}
   .hero-skyline{width:100%;display:block;}
 
   /* ---------- Sections ---------- */
@@ -108,11 +116,19 @@
   .fact-box li:last-child{border-bottom:none;}
   .fact-box li span:first-child{color:var(--gold-soft);}
 
+  .temple-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2.5rem;}
+  @media(max-width:760px){.temple-grid{grid-template-columns:1fr;}}
+  .photo-card{background:var(--cream);border:1px solid var(--gold-soft);border-radius:4px;overflow:hidden;}
+  .photo-card img{width:100%;height:230px;object-fit:cover;}
+  .photo-card figcaption{padding:.7rem 1rem;font-size:.82rem;color:var(--ink-soft);font-style:italic;}
+
   .culture-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;}
   @media(max-width:760px){.culture-grid{grid-template-columns:1fr;}}
-  .culture-card{background:var(--cream);border:1px solid var(--gold-soft);border-radius:4px;padding:1.5rem;}
+  .culture-card{background:var(--cream);border:1px solid var(--gold-soft);border-radius:4px;overflow:hidden;}
+  .culture-card img{width:100%;height:150px;object-fit:cover;}
+  .culture-card .body{padding:1.3rem 1.4rem;}
   .culture-card .mark{
-    font-family:'Marcellus',serif;color:var(--green);font-size:1.6rem;display:block;margin-bottom:.6rem;
+    font-family:'Marcellus',serif;color:var(--green);font-size:1.4rem;display:block;margin-bottom:.4rem;
   }
   .culture-card h3{font-size:1.05rem;margin-bottom:.5rem;}
   .culture-card p{font-size:.92rem;color:var(--ink-soft);}
@@ -122,11 +138,32 @@
   .attraction{
     background:var(--cream);
     border-radius:4px;
-    padding:1.4rem 1.5rem;
+    overflow:hidden;
     border-top:3px solid var(--green);
   }
+  .attraction img{width:100%;height:170px;object-fit:cover;}
+  .attraction .body{padding:1.2rem 1.4rem;}
   .attraction h3{font-size:1.05rem;margin-bottom:.4rem;}
   .attraction p{font-size:.92rem;color:var(--ink-soft);}
+
+  .itinerary{list-style:none;counter-reset:stop;max-width:700px;margin:0 auto;}
+  .itinerary li{
+    counter-increment:stop;
+    position:relative;
+    padding:.9rem 0 .9rem 3rem;
+    border-bottom:1px dashed var(--gold-soft);
+  }
+  .itinerary li:last-child{border-bottom:none;}
+  .itinerary li::before{
+    content:counter(stop);
+    position:absolute;left:0;top:.85rem;
+    width:1.9rem;height:1.9rem;border-radius:50%;
+    background:var(--maroon);color:var(--cream-2);
+    font-family:'Marcellus',serif;font-size:.95rem;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .itinerary strong{color:var(--maroon-dark);}
+  .itinerary span.t{color:var(--green-dark);font-size:.85rem;font-weight:700;display:block;margin-bottom:.15rem;}
 
   .visit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
   @media(max-width:760px){.visit-grid{grid-template-columns:1fr;}}
@@ -142,6 +179,8 @@
   }
   footer .brand{margin-bottom:.6rem;}
   footer p{color:rgba(246,241,228,.65);}
+  .credits{max-width:700px;margin:1.2rem auto 0;font-size:.72rem;color:rgba(246,241,228,.45);line-height:1.7;}
+  .credits a{color:rgba(231,206,147,.7);}
 
   .quote{
     font-family:'Cormorant Garamond',serif;
@@ -167,6 +206,7 @@
         <li><a href="#temple">Temple</a></li>
         <li><a href="#culture">Culture</a></li>
         <li><a href="#see">See &amp; do</a></li>
+        <li><a href="#itinerary">Day plan</a></li>
         <li><a href="#visit">Plan a visit</a></li>
       </ul>
     </nav>
@@ -178,6 +218,9 @@
     <span class="eyebrow">Tamil Nadu, India — on the banks of the Vaigai</span>
     <h1>Madurai</h1>
     <p class="lede">One of the oldest continuously inhabited cities in the world, built around the towers of the Meenakshi Amman Temple and known for centuries as the Athens of the East.</p>
+  </div>
+  <div class="hero-photo">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Aerial%20view%20of%20Madurai%20Meenakshi%20amman%20temple.jpg?width=1400" alt="Aerial view of the Meenakshi Amman Temple complex and its gopuram towers in Madurai">
   </div>
   <!-- Gopuram skyline silhouette -->
   <svg class="hero-skyline" viewBox="0 0 1000 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Silhouette of temple gopuram towers against the skyline">
@@ -224,6 +267,10 @@
           <h3>A living city, not a ruin</h3>
           <p>Unlike many ancient sites, Madurai was never abandoned. Its markets, weaving traditions and temple rituals have run continuously for centuries, which is part of what makes a visit feel less like sightseeing and more like stepping into an ongoing story.</p>
         </div>
+        <div class="pillar">
+          <h3>A trading crossroads</h3>
+          <p>Its position on old inland trade routes connected the city to ports on both coasts, and merchants carried Madurai's cotton, spices and pearls well beyond South India — one reason the city shows up in accounts written far from Tamil Nadu.</p>
+        </div>
       </div>
       <div class="fact-box">
         <h3>Madurai at a glance</h3>
@@ -235,6 +282,7 @@
           <li><span>Nickname</span><span>City of jasmine</span></li>
           <li><span>Language</span><span>Tamil</span></li>
           <li><span>Famous drink</span><span>Jigarthanda</span></li>
+          <li><span>Big festival</span><span>Chithirai (Apr–May)</span></li>
         </ul>
       </div>
     </div>
@@ -256,6 +304,16 @@
     <p style="max-width:720px;margin:0 auto 2rem;text-align:center;color:var(--ink-soft);">
       Dedicated to the goddess Meenakshi and her consort Sundareswarar, the temple's fourteen gopurams (gateway towers) rise in tiers covered with thousands of painted stone and stucco figures — gods, demons, animals and dancers, restored and repainted every twelve years. The complex holds a thousand-pillared hall, a golden lotus tank, and streets of the old city fan out from its four gates, the way they have for generations.
     </p>
+    <div class="temple-grid">
+      <figure class="photo-card">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Madurai%20Meenakshi%20Amman%20Temple%20Gopuram.jpg?width=700" alt="Close view of a carved and painted gopuram tower at Meenakshi Amman Temple">
+        <figcaption>One of the temple's painted gopurams, covered tier by tier with carved figures.</figcaption>
+      </figure>
+      <figure class="photo-card">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Golden%20Lotus%20in%20Meenakshi%20Amman%20Temple.jpg?width=700" alt="The Golden Lotus Tank inside the Meenakshi Amman Temple complex">
+        <figcaption>The Golden Lotus Tank, where pilgrims have bathed for centuries.</figcaption>
+      </figure>
+    </div>
     <div class="quote">
       "The temple isn't a monument you visit once — it's the organizing idea the rest of the city is built around."
       <span>— on why Madurai's street plan still circles the temple</span>
@@ -277,19 +335,26 @@
     </div>
     <div class="culture-grid">
       <div class="culture-card">
-        <span class="mark">✿</span>
-        <h3>Madurai malli</h3>
-        <p>The city gives its name to a variety of jasmine grown in the surrounding villages, strung into garlands sold each evening at flower markets and worn as a matter of daily habit, not just for festivals.</p>
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Jasmine%20flower%20in%20hand.JPG?width=500" alt="Jasmine flowers held in a hand, the flower Madurai is famous for">
+        <div class="body">
+          <span class="mark">✿</span>
+          <h3>Madurai malli</h3>
+          <p>The city gives its name to a variety of jasmine grown in the surrounding villages, strung into garlands sold each evening at flower markets and worn as a matter of daily habit, not just for festivals.</p>
+        </div>
       </div>
       <div class="culture-card">
-        <span class="mark">❖</span>
-        <h3>Weaving and craft</h3>
-        <p>Nearby weaving communities produce fine cotton and silk, and the region's metalwork and temple jewellery traditions trace back to artisans who worked for the Nayak court.</p>
+        <div class="body" style="padding-top:1.4rem;">
+          <span class="mark">❖</span>
+          <h3>Weaving and craft</h3>
+          <p>Nearby weaving communities produce fine cotton and silk, and the region's metalwork and temple jewellery traditions trace back to artisans who worked for the Nayak court. Sungudi tie-dye cotton sarees are still made in workshops around the city.</p>
+        </div>
       </div>
       <div class="culture-card">
-        <span class="mark">☕</span>
-        <h3>Food worth the trip alone</h3>
-        <p>Jigarthanda, a chilled milk drink with nannari syrup and ice cream, was invented here. Pair it with a Madurai-style non-vegetarian meal or a simple kari dosai from a roadside stall.</p>
+        <div class="body" style="padding-top:1.4rem;">
+          <span class="mark">☕</span>
+          <h3>Food worth the trip alone</h3>
+          <p>Jigarthanda, a chilled milk drink with nannari syrup and ice cream, was invented here. Pair it with a Madurai-style non-vegetarian meal, a Muniyandi Vilas thali, or a simple kari dosai from a roadside stall.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -309,20 +374,30 @@
     </div>
     <div class="attractions">
       <div class="attraction">
-        <h3>Thirumalai Nayakkar Mahal</h3>
-        <p>A 17th-century palace built by King Thirumalai Nayak, known for its towering pillared courtyard and Indo-Saracenic arches — a light-and-sound show runs most evenings.</p>
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Thirumalai%20Nayakkar%20Mahal%2C%20Madurai.JPG?width=700" alt="Courtyard and pillared arches of Thirumalai Nayakkar Mahal palace in Madurai">
+        <div class="body">
+          <h3>Thirumalai Nayakkar Mahal</h3>
+          <p>A 17th-century palace built by King Thirumalai Nayak, known for its towering pillared courtyard and Indo-Saracenic arches — a light-and-sound show runs most evenings.</p>
+        </div>
       </div>
       <div class="attraction">
-        <h3>Vaigai River and the Teppakulam tank</h3>
-        <p>The city's floating festival, Teppotsavam, takes place on this large temple tank; visiting it outside festival time still gives a sense of how water shaped the city's layout.</p>
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Madurai%20Meenakshi%20Amman%20Temple%20-%20South%20Tower.JPG?width=700" alt="The south gopuram tower of Meenakshi Amman Temple seen from a distance">
+        <div class="body">
+          <h3>Vaigai River and the Teppakulam tank</h3>
+          <p>The city's floating festival, Teppotsavam, takes place on this large temple tank; visiting it outside festival time still gives a sense of how water shaped the city's layout.</p>
+        </div>
       </div>
       <div class="attraction">
-        <h3>Gandhi Memorial Museum</h3>
-        <p>Housed in a former palace, the museum traces India's freedom movement and holds the blood-stained cloth Gandhi was wearing when he was assassinated.</p>
+        <div class="body" style="padding-top:1.4rem;">
+          <h3>Gandhi Memorial Museum</h3>
+          <p>Housed in a former palace, the museum traces India's freedom movement and holds the blood-stained cloth Gandhi was wearing when he was assassinated.</p>
+        </div>
       </div>
       <div class="attraction">
-        <h3>Flower and spice markets</h3>
-        <p>The streets around the temple's eastern gate turn into an open-air flower, fruit and spice market each morning — one of the best places to see everyday Madurai at work.</p>
+        <div class="body" style="padding-top:1.4rem;">
+          <h3>Flower and spice markets</h3>
+          <p>The streets around the temple's eastern gate turn into an open-air flower, fruit and spice market each morning — one of the best places to see everyday Madurai at work.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -334,7 +409,29 @@
   </div>
 </div>
 
-<section id="visit">
+<section id="itinerary">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">If you only have one day</span>
+      <h2>A simple day plan</h2>
+    </div>
+    <ul class="itinerary">
+      <li><span class="t">Early morning</span><strong>Meenakshi Amman Temple</strong> — arrive soon after opening, before the crowds and heat build up.</li>
+      <li><span class="t">Mid-morning</span><strong>Flower and spice market streets</strong> east of the temple, best while stalls are still fresh and unhurried.</li>
+      <li><span class="t">Midday</span><strong>Lunch on a banana leaf</strong> at a traditional Madurai meals restaurant near the temple.</li>
+      <li><span class="t">Afternoon</span><strong>Thirumalai Nayakkar Mahal</strong> for the palace courtyard, followed by the Gandhi Memorial Museum nearby.</li>
+      <li><span class="t">Evening</span><strong>Jigarthanda</strong> from a well-known stall, then back to the temple for the evening rituals and lit-up gopurams.</li>
+    </ul>
+  </div>
+</section>
+
+<div class="tiers">
+  <div class="tier" style="background:var(--green-dark)">
+    <svg viewBox="0 0 100 4" preserveAspectRatio="none"><rect width="100" height="4" fill="#C79A3B"/></svg>
+  </div>
+</div>
+
+<section class="alt" id="visit">
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Practical notes</span>
@@ -353,6 +450,18 @@
         <h3>Temple etiquette</h3>
         <p>Leather items and cameras are typically restricted inside the temple's inner areas, and modest dress is expected. Mornings are quieter than evenings.</p>
       </div>
+      <div class="visit-card">
+        <h3>Getting around</h3>
+        <p>Most sights within the old city are walkable or a short auto-rickshaw ride apart; the temple itself is the easiest fixed point to navigate from.</p>
+      </div>
+      <div class="visit-card">
+        <h3>Where to stay</h3>
+        <p>Streets immediately around the temple offer budget and mid-range lodging within walking distance of most attractions; quieter hotels sit a little further out.</p>
+      </div>
+      <div class="visit-card">
+        <h3>A day trip further out</h3>
+        <p>Thirumalai Nayakkar Mahal aside, some visitors add a half-day trip to the Vandiyur Mariamman Teppakulam tank or nearby Alagar Kovil.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -361,6 +470,15 @@
   <div class="wrap">
     <div class="brand">MADURAI <span>| the temple city</span></div>
     <p>A guide site built to introduce visitors to Madurai's history, culture and landmarks.</p>
+    <p class="credits">
+      Photos via Wikimedia Commons, used under Creative Commons licenses (CC BY-SA):
+      <a href="https://commons.wikimedia.org/wiki/File:Aerial_view_of_Madurai_Meenakshi_amman_temple.jpg" target="_blank" rel="noopener">temple aerial view</a>,
+      <a href="https://commons.wikimedia.org/wiki/File:Madurai_Meenakshi_Amman_Temple_Gopuram.jpg" target="_blank" rel="noopener">gopuram</a>,
+      <a href="https://commons.wikimedia.org/wiki/File:Golden_Lotus_in_Meenakshi_Amman_Temple.jpg" target="_blank" rel="noopener">golden lotus tank</a>,
+      <a href="https://commons.wikimedia.org/wiki/File:Thirumalai_Nayakkar_Mahal,_Madurai.JPG" target="_blank" rel="noopener">Thirumalai Nayakkar Mahal</a>,
+      <a href="https://commons.wikimedia.org/wiki/File:Madurai_Meenakshi_Amman_Temple_-_South_Tower.JPG" target="_blank" rel="noopener">south tower</a>,
+      <a href="https://commons.wikimedia.org/wiki/File:Jasmine_flower_in_hand.JPG" target="_blank" rel="noopener">jasmine flower</a>.
+    </p>
   </div>
 </footer>
 
